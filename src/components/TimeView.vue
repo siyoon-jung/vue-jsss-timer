@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import {toTimeFormat} from '../utils/FormatUtil';
+
 export default {
     name: 'TimeView',
     props: {
@@ -12,7 +14,7 @@ export default {
     },
     computed: {
         timeFormat(){
-            return this.time;
+            return toTimeFormat(this.time);
         },
     }
 };
