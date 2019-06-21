@@ -72,6 +72,13 @@ export default {
 
       timer = setInterval(()=>{
         this.time++;
+
+        if(this.laps[0])
+          // vue 여서 가능한.. index를 다시 훑어서 갱신되게끔..
+          // index로 접근해도 데이터 갱신이 가능하게 해준다. 리액트의 key와는 다르다
+          this.laps[0].time++;
+
+          // console.log(this.laps) // 실제 native array가 아니다..
       }, 10)
     },
     onStopClick(){
@@ -87,8 +94,14 @@ export default {
       this.laps = [];
     },
     onLapClick(){
-      const lap = {tit: "Lap" + (this.laps.length + 1), time: 0}
-      this.laps.push(lap);
+      const lap = {tit: "Lap" + (this.laps.length + 1), time: 0};
+
+      // 최근꺼가 위로 오도록..  
+      this.laps = [
+        lap,
+        ...this.laps
+      ];
+
     }
   }
 };
