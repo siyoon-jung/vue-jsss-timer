@@ -1,5 +1,5 @@
 <template>
-    <div class="time">
+    <div :class="type">
         {{timeFormat}}
     </div>
 </template>
@@ -11,6 +11,7 @@ export default {
     name: 'TimeView',
     props: {
       time: Number,
+      type: String,
     },
     computed: {
         timeFormat(){
@@ -21,8 +22,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.time {
-    font-size: 20vw;
-    font-weight: bold;
-}
+    .main { 
+        font-size: 20vw;
+        font-weight: bold;
+    }
+    .lap_item {
+        float: right;
+        margin-right: 0;
+    }
 </style>

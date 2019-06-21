@@ -11,6 +11,7 @@
        -->
       <TimeView        
         :time="time"
+        type="main"
       />
       <!-- v-if true/false에 따라 보였다 안보였다   
             v-if="isStop"  
@@ -26,7 +27,8 @@
       </div>
       <!-- lab list area -->
       <div class="listArea">
-        <LapList />
+        <!-- :laps 의 :는 데이터 바인딩해서 내려주는 것.. 속성이랑 헷갈리지 않기.. -->
+        <LapList :laps="laps" />
       </div>
     </div>
 </template>
@@ -54,6 +56,7 @@ export default {
     return {
       isStop: true,
       time: 0,
+      laps: [],
     }
   },
   // timer 돌리기 event
@@ -80,9 +83,12 @@ export default {
     },
     onResetClick(){
       this.time = 0;
+      // reset 하면 lap도 초기화
+      this.laps = [];
     },
     onLapClick(){
-      console.log('lap')
+      const lap = {tit: "Lap" + (this.laps.length + 1), time: 0}
+      this.laps.push(lap);
     }
   }
 };
