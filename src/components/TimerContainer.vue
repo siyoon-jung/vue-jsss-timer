@@ -24,11 +24,16 @@
         <button id="reset" type="button" v-if="isStop" v-on:click="onResetClick">Reset</button>
         <button id="lap" type="button" v-else v-on:click="onLapClick">Lap</button>
       </div>
+      <!-- lab list area -->
+      <div class="listArea">
+        <LapList />
+      </div>
     </div>
 </template>
 
 <script>
 import TimeView from './TimeView';
+import LapList from './LapList';
 
 let timer;
 
@@ -39,7 +44,8 @@ export default {
     tit: String
   },
   components: {
-    TimeView
+    TimeView,
+    LapList,
   },
   // data: function(){}, 약자 ES6, 
   // data는 fun return으로 써야한다!!!
@@ -126,6 +132,16 @@ export default {
         #lap {
           background-color: deepskyblue;
         }
+    }
+    .listArea {
+      position: absolute;
+      height: 50vh;
+      width: 100%;
+      top: 50vh;
+      border-top: #ddd 1px solid;
+      background-color: #f6f6f6;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 }
 </style>
