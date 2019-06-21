@@ -68,12 +68,17 @@ export default {
       if (timer) 
         return;
 
+      // 처음에 start 버튼 누르면 lap 타임 하나 추가하고 시작
+      if (this.time === 0)
+        this.addLapTime();
+    
       this.isStop = false;
 
       timer = setInterval(()=>{
         this.time++;
 
-        if(this.laps[0])
+        // 처음에 start 버튼 누르면 lap 타임 하나 추가하고 시작하니까 this.laps[0] 확인 코드 필요 없다
+        // if(this.laps[0])
           // vue 여서 가능한.. index를 다시 훑어서 갱신되게끔..
           // index로 접근해도 데이터 갱신이 가능하게 해준다. 리액트의 key와는 다르다
           this.laps[0].time++;
@@ -94,14 +99,17 @@ export default {
       this.laps = [];
     },
     onLapClick(){
-      const lap = {tit: "Lap" + (this.laps.length + 1), time: 0};
+      this.addLapTime();
+    },
+    addLapTime(){
+      // const lap = {tit: "Lap" + (this.laps.length + 1), time: 0};
 
       // 최근꺼가 위로 오도록..  
+      // 코드량 짧게 하기 위해서 이런 식으로 하기도..
       this.laps = [
-        lap,
+        {tit: "Lap" + (this.laps.length + 1), time: 0},
         ...this.laps
       ];
-
     }
   }
 };
