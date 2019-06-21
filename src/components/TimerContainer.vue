@@ -20,7 +20,9 @@
       <div class="button_area">
         <button id="start" type="button" v-if="isStop" v-on:click="onStartClick">Start</button>
         <button id="stop" type="button" v-else v-on:click="onStopClick">Stop</button>
-        <button type="button" v-on:click="onResetClick">Reset</button>
+
+        <button id="reset" type="button" v-if="isStop" v-on:click="onResetClick">Reset</button>
+        <button id="lap" type="button" v-else v-on:click="onLapClick">Lap</button>
       </div>
     </div>
 </template>
@@ -72,6 +74,9 @@ export default {
     },
     onResetClick(){
       this.time = 0;
+    },
+    onLapClick(){
+      console.log('lap')
     }
   }
 };
@@ -116,6 +121,10 @@ export default {
 
         #stop {
             background-color: indianred;
+        }
+
+        #lap {
+          background-color: deepskyblue;
         }
     }
 }
