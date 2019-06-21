@@ -10,9 +10,7 @@
       ="minute" 은 data()의 minute
        -->
       <TimeView        
-        :minute="minute"
-        :second="second"
-        :tenMillisecond="tenMillisecond"
+        :time="time"
       />
       <!-- v-if true/false에 따라 보였다 안보였다   
             v-if="isStop"  
@@ -47,9 +45,7 @@ export default {
     // 내부에서 관리하는 변수. state같은 녀석..
     return {
       isStop: true,
-      minute: 0,
-      second: 0,
-      tenMillisecond: 0
+      time: 0,
     }
   },
   // timer 돌리기 event
@@ -64,21 +60,7 @@ export default {
       this.isStop = false;
 
       timer = setInterval(()=>{
-        if(this.tenMillisecond === 99) {
-          this.tenMillisecond = 0;
-
-          if (this.second === 59) {
-            this.second = 0;
-            this.minute++;
-          } else {
-            this.second++;
-          }
-
-        } else {
-          this.tenMillisecond++;
-        }
-        
-        // console.log(this.minute, this.second, this.tenMillisecond);
+        this.time++;
       }, 10)
     },
     onStopClick(){
@@ -89,9 +71,7 @@ export default {
       timer = null;
     },
     onResetClick(){
-      this.minute = 0;
-      this.second = 0;
-      this.tenMillisecond = 0;
+      this.time = 0;
     }
   }
 };
